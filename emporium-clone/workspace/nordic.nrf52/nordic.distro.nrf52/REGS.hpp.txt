@@ -1,0 +1,7 @@
+#ifndef __REGS_M
+#define __REGS_M
+
+#include "../../nordic.nrf52/nordic.distro.nrf52/inc/nrf52.h"
+#include "../../nordic.nrf52/nordic.distro.nrf52/inc/nrf52_bitfields.h"
+
+#endif
