@@ -1,0 +1,23 @@
+CompileFlags:
+  CompilationDatabase: build/mqtt   # Note: Adjust according to your actual build directory
+  Remove:
+    - -fno-printf-return-value
+    - -mfp16-format=ieee
+    - -fno-reorder-functions
+    - -fno-defer-pop                     # Recommended to remove as well to avoid similar potential issues in the future [reference:3]
+    - -fno-common                        # Recommended to remove as well
+  Add:
+    - -Wno-unknown-warning-option         # Suppress unknown warning options [reference:4]
+
+    # --- Manually add Zephyr header file paths ---
+    - -ID:/Tools/ncs/v3.4.1/zephyr/include
+
+    # --- Manually add the cross-compiler's built-in system header paths ---
+    # Note: Verify the paths below according to your actual Zephyr SDK installation
+    # and GCC version.
+    - -isystem
+    - C:/ncs/toolchains/4f5b6ad6dd/opt/zephyr-sdk/gnu/arm-zephyr-eabi/arm-zephyr-eabi/include
+    - -isystem
+    - C:/ncs/toolchains/4f5b6ad6dd/opt/zephyr-sdk/gnu/arm-zephyr-eabi/lib/gcc/arm-zephyr-eabi/14.3.0/include
+    - -isystem
+    - C:/ncs/toolchains/4f5b6ad6dd/opt/zephyr-sdk/gnu/arm-zephyr-eabi/lib/gcc/arm-zephyr-eabi/14.3.0/include-fixed
