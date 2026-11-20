@@ -1,10 +1,10 @@
 import '@$$emscript'
 export const $U = $declare('MODULE')
 
-import * as $R from '@nordic.distro.nrf54/REGS.em'
+import * as $R from '@nordic.distro.nrf54lm20/REGS.em'
 
 import * as Common from '@em.mcu/Common.em'
-import * as Rtc from '@nordic.mcu.nrf54/Rtc.em'
+import * as Rtc from '@nordic.mcu.nrf54lm20/Rtc.em'
 
 export namespace em$meta { }
 

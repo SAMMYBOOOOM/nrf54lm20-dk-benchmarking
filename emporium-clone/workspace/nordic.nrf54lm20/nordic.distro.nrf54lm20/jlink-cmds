@@ -1,0 +1,6 @@
+Device nRF54LM20B_M33
+SelectInterface SWD
+Speed 1000
+Connect
+Halt
+Exit

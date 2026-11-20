@@ -1,7 +1,7 @@
 import '@$$emscript'
 export const $T = $declare('TEMPLATE')
 
-import * as $R from '@nordic.distro.nrf54/REGS.em'
+import * as $R from '@nordic.distro.nrf54lm20/REGS.em'
 
 import * as GpioI from '@em.hal/GpioI.em'
 

@@ -1,7 +1,7 @@
 import '@$$emscript'
 export const $U = $declare('MODULE', McuI)
 
-import * as $R from '@nordic.distro.nrf54/REGS.em'
+import * as $R from '@nordic.distro.nrf54lm20/REGS.em'
 
 import * as Debug from '@em.lang/Debug.em'
 import * as McuI from '@em.hal/McuI.em'

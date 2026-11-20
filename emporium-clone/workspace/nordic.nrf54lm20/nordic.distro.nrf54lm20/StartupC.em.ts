@@ -2,7 +2,7 @@ import '@$$emscript'
 export const $U = $declare('COMPOSITE')
 
 export function em$generate() {
-    let out = $outfile('nordic.distro.nrf54/startup.cpp')
+    let out = $outfile('nordic.distro.nrf54lm20/startup.cpp')
     out.addFrag(`
         |-> #include <stdbool.h>
         |-> #include <stdint.h>

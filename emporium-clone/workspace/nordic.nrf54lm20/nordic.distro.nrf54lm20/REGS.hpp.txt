@@ -1,0 +1,15 @@
+#ifndef __REGS_M
+#define __REGS_M
+
+#include "../../nordic.nrf54lm20/nordic.distro.nrf54lm20/inc/nrf54lm20b_application.h"
+#include "../../nordic.nrf54lm20/nordic.distro.nrf54lm20/inc/nrf54lm20b_types.h"
+#include "../../nordic.nrf54lm20/nordic.distro.nrf54lm20/inc/nrf54lm20b_global.h"
+
+#include "../../em.core/em.arch.arm/inc/core_cm33.h"
+
+#define NRF_P_GET(i) \
+    ((i) == 0 ? NRF_P0_S : (i) == 1 ? NRF_P1_S : (i) == 2 ? NRF_P2_S : (i) == 3 ? NRF_P3_S : 0)
+
+#define NRF_FICR_S NRF_FICR_NS
+
+#endif

@@ -2,13 +2,13 @@ import '@$$emscript'
 export const $U = $declare('COMPOSITE')
 
 import * as ArmStartupC from '@em.arch.arm/StartupC.em'
-import * as BoardC from '@nordic.distro.nrf54/BoardC.em'
+import * as BoardC from '@nordic.distro.nrf54lm20/BoardC.em'
 import * as IsrDefault from '@em.arch.arm/IsrEmpty.em'
-import * as IntrC from '@nordic.distro.nrf54/IntrC.em'
+import * as IntrC from '@nordic.distro.nrf54lm20/IntrC.em'
 import * as IntrVec from '@em.arch.arm/IntrVec.em'
 import * as LinkerC from '@em.build.segger/LinkerC.em'
-import * as REGS from '@nordic.distro.nrf54/REGS.em'
-import * as StartupC from '@nordic.distro.nrf54/StartupC.em'
+import * as REGS from '@nordic.distro.nrf54lm20/REGS.em'
+import * as StartupC from '@nordic.distro.nrf54lm20/StartupC.em'
 import * as TargC from '@em.lang/TargC.em'
 
 export function em$configure() {
@@ -25,22 +25,20 @@ export function em$configure() {
 }
 
 export function em$generate() {
-
     LinkerC.genScript({
-        dmem_flash: { orig: 0x2003c000, len: 0x00004000 },
-        imem_flash: { orig: 0x00000000, len: 0x00008000 },
-        dmem_sram: { orig: 0x2003c000, len: 0x00004000 },
-        imem_sram: { orig: 0x20008000, len: 0x00008000 },
-        lmem_sram: { orig: 0x00000000, len: 0x00008000 },
+        dmem_flash: { orig: 0x20000000, len: 0x0007FC00 },
+        imem_flash: { orig: 0x00000000, len: 0x001FD000 },
+        dmem_sram: { orig: 0x20000000, len: 0x0007FC00 },
+        imem_sram: { orig: 0x00000000, len: 0x00000000 },
+        lmem_sram: { orig: 0x00000000, len: 0x001FD000 },
         cmem_sram: LinkerC.MEM_NULL,
     })
-
     let opt = $property('em.build.Optimize', 'Oz')
     let tools = $property('em.build.ToolsHome', '')
     let fpu = $property('em.build.FPU', '')
     let fpuabi = fpu ? 'hard' : 'soft'
     let fpudef = fpu ? '1' : '0'
-    let libarch = fpu ? 'v8mml_fpv5_sp_d16_hard' : 'v6m'
+    let libarch = fpu ? 'v8mml_fpv5_sp_d16_hard' : 'v8mml'
     let libflav = opt == 'Oz' && !fpu ? 'small' : 'balanced'
     let out = $outfile('build.sh', 0o755)
     out.addFrag(`
@@ -72,7 +70,7 @@ export function em$generate() {
         |->     -D__FPU_PRESENT=${fpudef} \\
         |->     -D__FPU_USED=${fpudef} \\
         |->     --std=c++14 \\
-        |->     -triple thumbv6m-none-eabi \\
+        |->     -triple thumbv8m.main-none-eabi \\
         |->     -target-cpu cortex-m33 \\
         |->     -ffunction-sections \\
         |->     -fdata-sections \\
@@ -123,6 +121,6 @@ export function em$generate() {
     const ext = (process.platform === 'win32') ? '.exe' : 'Exe'
     out = $outfile('load.sh', 0o755)
     const exec = `${tools}/segger-jlink/JLink${ext}`
-    out.addText(`${exec} -CommandFile ../nordic.nrf54/nordic.distro.nrf54/jlink-cmds`)
+    out.addText(`${exec} -CommandFile ../nordic.nrf54lm20/nordic.distro.nrf54lm20/jlink-cmds`)
     out.close()
 }

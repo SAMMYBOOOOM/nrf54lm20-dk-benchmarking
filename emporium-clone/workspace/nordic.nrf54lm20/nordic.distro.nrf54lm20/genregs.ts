@@ -117,8 +117,8 @@ meta.addText(`import em from '@$$emscript'\n`)
 meta.addText(`export const $U = em.$declare('COMPOSITE')\n`)
 meta.addText(`
 export function em$generate() {
-    let out = $outfile('nordic.distro.nrf54/REGS.hpp')
-    out.addFile('../nordic.nrf54/nordic.distro.nrf54/REGS.hpp.txt')
+    let out = $outfile('nordic.distro.nrf54lm20/REGS.hpp')
+    out.addFile('../nordic.nrf54lm20/nordic.distro.nrf54lm20/REGS.hpp.txt')
     out.close()
 }
 `)

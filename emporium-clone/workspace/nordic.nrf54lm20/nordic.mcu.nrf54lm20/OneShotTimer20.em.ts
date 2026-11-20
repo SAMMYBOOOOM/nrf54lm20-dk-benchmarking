@@ -1,7 +1,7 @@
 import '@$$emscript'
 export const $U = $declare('MODULE', OneShotI)
 
-import * as $R from '@nordic.distro.nrf54/REGS.em'
+import * as $R from '@nordic.distro.nrf54lm20/REGS.em'
 
 import * as Common from '@em.mcu/Common.em'
 import * as OneShotI from '@em.hal/OneShotI.em'
