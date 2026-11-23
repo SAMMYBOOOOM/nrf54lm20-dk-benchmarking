@@ -1,6 +1,10 @@
 #ifndef __REGS_M
 #define __REGS_M
 
+#ifndef NRF_APPLICATION
+#define NRF_APPLICATION
+#endif
+
 #include "../../nordic.nrf54lm20/nordic.distro.nrf54lm20/inc/nrf54lm20b_application.h"
 #include "../../nordic.nrf54lm20/nordic.distro.nrf54lm20/inc/nrf54lm20b_types.h"
 #include "../../nordic.nrf54lm20/nordic.distro.nrf54lm20/inc/nrf54lm20b_global.h"
