@@ -89,6 +89,8 @@ export function em$generate() {
         |-> CINCS="\\
         |->     -I . \\
         |->     -I $TOOLS/include \\
+        |->     -I ../em.core/em.arch.arm/inc \\
+        |->     -I ../nordic.nrf54lm20/nordic.distro.nrf54lm20/inc \\
         |-> "
         |-> 
         |-> COPTS="\\
@@ -120,7 +122,10 @@ export function em$generate() {
     //
     const ext = (process.platform === 'win32') ? '.exe' : 'Exe'
     out = $outfile('load.sh', 0o755)
-    const exec = `${tools}/segger-jlink/JLink${ext}`
-    out.addText(`${exec} -CommandFile ../nordic.nrf54lm20/nordic.distro.nrf54lm20/jlink-cmds`)
+    const exec = $property(
+        'em.build.JLinkPath',
+        `${tools}/segger-jlink/JLink${ext}`
+    )
+    out.addText(`"${exec}" -CommandFile ../nordic.nrf54lm20/nordic.distro.nrf54lm20/jlink-cmds`)
     out.close()
 }

@@ -43,7 +43,7 @@ function sleepEnter() {
 }
 
 function sleepLeave() {
-    $R.UARTE30.PSEL.TXD.$$ = TxPin.em$meta.pinId()  // full board-configured port/pin ID
+    $R.UARTE30.PSEL.TXD.$$ = TxPin.pinId() // full board-configured port/pin ID
     $R.UARTE30.BAUDRATE.$$ = $R.UARTE_BAUDRATE_BAUDRATE_Baud115200
     $R.UARTE30.ENABLE.$$ = $R.UARTE_ENABLE_ENABLE_Enabled
     //

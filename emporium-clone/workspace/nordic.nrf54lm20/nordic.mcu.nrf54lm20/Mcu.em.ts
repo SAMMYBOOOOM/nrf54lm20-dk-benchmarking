@@ -49,18 +49,21 @@ export function startup(): void {
     e$`NRF_GLITCHDET_S->CONFIG = (GLITCHDET_CONFIG_ENABLE_Disable << GLITCHDET_CONFIG_ENABLE_Pos)`
     e$`NRF_APPLICATION_ICACHE_S->ENABLE = 1`
 
-    if (!use_sram) {
-        $R.MEMCONF.POWER[0].CONTROL.$$ = 0x80 // retain 16K sram
-        $R.MEMCONF.POWER[0].RET.$$ = 0x80
-        $R.MEMCONF.POWER[0].RET2.$$ = 0x00
-    } else {
-        $R.MEMCONF.POWER[0].CONTROL.$$ = 0x82 // retain 64K sram
-        $R.MEMCONF.POWER[0].RET.$$ = 0x82
-        $R.MEMCONF.POWER[0].RET2.$$ = 0x0
-    }
-    $R.MEMCONF.POWER[1].CONTROL.$$ = 0x0
-    $R.MEMCONF.POWER[1].RET.$$ = 0x0
-    $R.MEMCONF.POWER[1].RET2.$$ = 0
+    // nRF54LM20B: preserve default SRAM power and retention
+    // configuration until memory bank mapping is validated.
+
+    // if (!use_sram) {
+    //     $R.MEMCONF.POWER[0].CONTROL.$$ = 0x80 // retain 16K sram
+    //     $R.MEMCONF.POWER[0].RET.$$ = 0x80
+    //     // $R.MEMCONF.POWER[0].RET2.$$ = 0x00
+    // } else {
+    //     $R.MEMCONF.POWER[0].CONTROL.$$ = 0x82 // retain 64K sram
+    //     $R.MEMCONF.POWER[0].RET.$$ = 0x82
+    //     // $R.MEMCONF.POWER[0].RET2.$$ = 0x0
+    // }
+    // $R.MEMCONF.POWER[1].CONTROL.$$ = 0x0
+    // $R.MEMCONF.POWER[1].RET.$$ = 0x0
+    // // $R.MEMCONF.POWER[1].RET2.$$ = 0
 
     $R.CLOCK.LFCLK.SRC.$$ = $R.CLOCK_LFCLK_SRC_SRC_LFXO
     $R.CLOCK.TASKS_LFCLKSTART.$$ = 1
